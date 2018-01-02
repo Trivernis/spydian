@@ -1,0 +1,19 @@
+--Motoren--
+3V an VCC, 5V an V+
+5V aus externer Quelle, nicht PI -> zu große Schwankungen durch Servomotor
+Schrittmotoren für Räder, Servomotoren für Zusatz
+
+--Gyro--
+Messung von Lage und Beschleunigung
+kann grobes Bodenprofil erstellen
+
+--Ultraschall--
+Messung von Entfernungen zu Objekten
+zur Erstellung von 3d Raumkarte (Experimentell)
+kann an Schrittmotor angeschlossen werden -> zur Drehung
+
+--Lautsprecher--
+Benötigt für Soundwiedergabe
+
+--Controller--
+Input von Gerät zu Gerät verschieden
