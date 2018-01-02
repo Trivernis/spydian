@@ -72,17 +72,17 @@ def reset_dire():
 
 def drive_left():
     if not left:
-        call(['python', './lib/servo_2.py','left'])
+        call(['python', './lib/servolib.py','left'])
     return
 
 def drive_right():
     if not right:
-        call(['python', './lib/servo_2.py','right'])
+        call(['python', './lib/servolib.py','right'])
     return
 
 def reset_turn():
     if left or right:
-        call(['python','./lib/servo_2.py'])
+        call(['python','./lib/servolib.py'])
     return
 # ____________________________
 # -- special functions
