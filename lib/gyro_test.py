@@ -1,4 +1,4 @@
-import gyro
+from lib import gyro
 import time
 while True:
     print(gyro.getAllOut()['rot'])
