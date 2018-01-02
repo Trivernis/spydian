@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 sudo apt update
 sudo apt upgrade
 sudo apt dist-upgrade
@@ -7,3 +8,4 @@ sudo apt install i2c-tools
 sudo pip install adafruit-pca9685
 sudo apt install vsftpd
 sudo apt install vlc
+sudo modprobe bcm2835-v4l2
