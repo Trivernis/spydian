@@ -1,4 +1,5 @@
-import pygame, picamera, ultrasonic#,gyro
+import pygame, picamera  #,gyro
+from lib import ultrasonic
 from datetime import datetime
 from subprocess import call
 import RPi.GPIO as GPIO
@@ -9,7 +10,7 @@ import RPi.GPIO as GPIO
 BLACK    = (   0,   0,   0)
 WHITE    = ( 255, 255, 255)
 # --ultrasonic--
-sensor=ultrasonic.Sensor()
+sensor= ultrasonic.Sensor()
 sensor.init(11,7)
 # -- Nightmode
 # WHITE, BLACK=BLACK,WHITE
@@ -71,17 +72,17 @@ def reset_dire():
 
 def drive_left():
     if not left:
-        call(['python', 'servo_2.py','left'])
+        call(['python', './lib/servo_2.py','left'])
     return
 
 def drive_right():
     if not right:
-        call(['python', 'servo_2.py','right'])
+        call(['python', './lib/servo_2.py','right'])
     return
 
 def reset_turn():
     if left or right:
-        call(['python','servo_2.py'])
+        call(['python','./lib/servo_2.py'])
     return
 # ____________________________
 # -- special functions
@@ -108,6 +109,7 @@ def turn_rec(*record):
 
 def imgRefresh():
     #turn_rec(True)
+    image = None
     try:
         image = pygame.image.load('image.jpg')
         image = pygame.transform.scale(image, (192*2, 108*2))
