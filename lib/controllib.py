@@ -40,9 +40,9 @@ class Joystick():
 
             if i == c['LIGHT'] and button == 1 and button not in self.pressed:
                 self.light.switch()
-                self.pressed.append(i)
+                self.pressed.append(button)
             elif i == c['LIGHT'] and button == 0 and button in self.pressed:
-                self.pressed.remove(i)
+                self.pressed.remove(button)
 
             elif i == c['MUSIC'] and button == 1 and button not in self.pressed:
                 if self.splaying:
@@ -51,27 +51,27 @@ class Joystick():
                 else:
                     self.sound.play()
                     self.splaying = True
-                self.pressed.append(i)
+                self.pressed.append(button)
             elif i == c['MUSIC'] and button == 0 and button in self.pressed:
-                self.pressed.remove(i)
+                self.pressed.remove(button)
 
             elif i == c['VOLIN'] and button == 1 and button not in self.pressed:
                 self.sound.set_volume(self.sound.get_volume() + 0.1)
-                self.pressed.append(i)
+                self.pressed.append(button)
             elif i == c['VOLIN'] and button == 0 and button in self.pressed:
                 self.sound.set_volume(self.sound.get_volume() - 0.1)
-                self.pressed.remove(i)
+                self.pressed.remove(button)
 
             elif i == c['VOLDE'] and button == 1 and button not in self.pressed:
-                self.pressed.append(i)
+                self.pressed.append(button)
             elif i == c['VOLDE'] and button == 0 and button in self.pressed:
-                self.pressed.remove(i)
+                self.pressed.remove(button)
 
             elif i == c['REC'] and button == 1 and button not in self.pressed:
                 self._save_camimg()
-                self.pressed.append(i)
+                self.pressed.append(button)
             elif i == c['REC'] and button == 0 and button in self.pressed:
-                self.pressed.remove(i)
+                self.pressed.remove(button)
 
         # hats
         for i in range(self.joystick.get_numhats()):
