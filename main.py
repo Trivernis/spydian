@@ -13,11 +13,17 @@ configuration = {
 
 def main():
     navigator = hardwarelib.Navigator(16)
+    print('navigator created')
     light = hardwarelib.Light(15)
+    print('light created')
     ultrasonic = hardwarelib.Ultrasonic(11,7)
+    print('ultrasonic created')
     temperature = hardwarelib.Temperature()
+    print('temperature created')
     camera = graphiclib.PiCamera((500, 0), (500, 1000))
+    print('camera created')
     jstick = controllib.Joystick(navigator, light, configuration, camera)
+    print('joystic created')
 
     #pygame stuff
     screen = graphiclib.Screen(size=(1000,1000))
