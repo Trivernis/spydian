@@ -55,6 +55,7 @@ class List(pygame.sprite.Sprite):
     def update(self, *args):
         if self.updated:
             height = 0
+            self.image.fill((0, 0, 0))
 
             for key in self.dict.keys():
                 line = '{}: {}'.format(key, self.dict[key])
@@ -83,4 +84,4 @@ class PiCamera(pygame.sprite.Sprite):
         print('updating camera')
         with picamera.array.PiRGBArray(self.camera, size=self.size) as output:
             self.camera.capture(output, 'rgb', resize=self.size)
-            print(output)
+            print('Captured %dx%d image' % (output.array.shape[1], output.array.shape[0]))
