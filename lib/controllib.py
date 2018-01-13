@@ -90,6 +90,7 @@ class Joystick():
 
 
     def _save_camimg(self):
+        self.camera.new_frame()
         img = self.camera.image
         if os.path.isfile('image.jpg'):
             count=0

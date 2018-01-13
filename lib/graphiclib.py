@@ -74,7 +74,7 @@ class PiCamera(pygame.sprite.Sprite):
         pygame.camera.init()
         camera = picamera.PiCamera()
         self.camsize = (size[0], int(size[0]/2))
-        camera.resolution = int(self.camsize[0]/2), int(self.camsize[1]/2)
+        camera.resolution = self.camsize
         self.camera = camera
         self.output = picamera.array.PiRGBArray(camera, size=self.camsize)
         self.size = size
@@ -84,7 +84,9 @@ class PiCamera(pygame.sprite.Sprite):
         self.rect.topleft = position
 
     def update(self, *args):
-        print('updating camera')
+        pass
+
+    def new_frame(self):
         self.output.truncate(0)
         self.camera.capture(self.output, 'rgb', resize=self.camsize)
         s = pygame.transform.rotate(pygame.surfarray.make_surface(self.output.array), 270)
