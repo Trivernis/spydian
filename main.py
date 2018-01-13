@@ -38,7 +38,9 @@ def main():
 
     while running:
         clock.tick(25)
+        print('waited some time')
         for event in pygame.event.get():
+            print(event)
             if event.type == pygame.QUIT:
                 print('quit event')
                 running = False
