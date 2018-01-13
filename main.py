@@ -27,12 +27,14 @@ def main():
 
     #pygame stuff
     screen = graphiclib.Screen(size=(1000,1000))
+    print('created screen')
     all_sprites = pygame.sprite.RenderUpdates()
     list = graphiclib.List((0,0),(500,1000))
     all_sprites.add(list)
     all_sprites.add(camera)
     clock = pygame.time.Clock()
     running = True
+    print('in running loop')
 
     while running:
         clock.tick(25)
