@@ -9,7 +9,7 @@ class Joystick():
         joystick.init()
         #sound
         pygame.mixer.init()
-        sound = pygame.mixer.Sound('./sounds/gasgasgas.wav')
+        sound = pygame.mixer.Sound('./sounds/gasgasgas.mp3')
         sound.set_volume(0.3)
         self.camera = camera
         self.sound = sound
