@@ -42,7 +42,7 @@
         <entry file="file://$PROJECT_DIR$/lib/graphiclib.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="474">
-              <caret line="86" column="59" lean-forward="true" selection-start-line="86" selection-start-column="59" selection-end-line="86" selection-end-column="59" />
+              <caret line="86" column="87" lean-forward="false" selection-start-line="86" selection-start-column="87" selection-end-line="86" selection-end-column="87" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -494,7 +494,7 @@
     <entry file="file://$PROJECT_DIR$/lib/graphiclib.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="474">
-          <caret line="86" column="59" lean-forward="true" selection-start-line="86" selection-start-column="59" selection-end-line="86" selection-end-column="59" />
+          <caret line="86" column="87" lean-forward="false" selection-start-line="86" selection-start-column="87" selection-end-line="86" selection-end-column="87" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
