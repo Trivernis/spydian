@@ -36,15 +36,10 @@ def main():
                 running = False
 
         dict = jstick.handle()
-        print('joystick handled')
         list.set_dict(dict)
-        print('list has dict')
         all_sprites.update()
-        print('updating sprites')
         update_rects = all_sprites.draw(screen.screen)
-        print('drawing sprites')
         screen.refresh(rectangles= update_rects)
-        print('refreshing screen')
     pygame.quit()
 
 
