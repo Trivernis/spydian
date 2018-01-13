@@ -29,6 +29,7 @@ def main():
     running = True
 
     while running:
+
         clock.tick(25)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -36,6 +37,7 @@ def main():
                 running = False
 
         dict = jstick.handle()
+        dict['Distance'] = ultrasonic.get_distance()
         list.set_dict(dict)
         all_sprites.update()
         update_rects = all_sprites.draw(screen.screen)
