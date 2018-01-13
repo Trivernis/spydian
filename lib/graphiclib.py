@@ -63,7 +63,6 @@ class List(pygame.sprite.Sprite):
                 height += self.txtsize[1]
 
             self.updated = False
-        print('update function called')
 
 
 class PiCamera(pygame.sprite.Sprite):
