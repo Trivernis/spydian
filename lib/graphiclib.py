@@ -73,7 +73,7 @@ class PiCamera(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         pygame.camera.init()
         camera = picamera.PiCamera()
-        self.camsize = (self.size[0], int(self.size[0]/2))
+        self.camsize = (size[0], int(size[0]/2))
         camera.resolution = self.camsize
         self.camera = camera
         self.output = picamera.array.PiRGBArray(camera, size=self.camsize)
