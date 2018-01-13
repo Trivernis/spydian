@@ -40,13 +40,18 @@ def main():
         clock.tick(25)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                print('quit event')
                 running = False
 
         dict = jstick.handle()
+        print('joystick handled')
         list.set_dict(dict)
         all_sprites.update()
+        print('updating sprites')
         update_rects = all_sprites.draw(screen.screen)
+        print('drawing sprites')
         screen.refresh(rectangles= update_rects)
+        print('refreshing screen')
     pygame.quit()
 
 
