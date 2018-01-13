@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 cd ..
 if [ -d "spydian/" ];then
-    sudo git -b develop clone https://trivernis@bitbucket.org/trivernis/spydian.git spydian_update
+    sudo git clone -b develop https://trivernis@bitbucket.org/trivernis/spydian.git spydian_update
     sudo rsync -a ./spydian_update/ ./spydian/
     sudo rm -r ./spydian_update/
     sudo chmod -R u+rw ./spydian/
