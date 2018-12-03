@@ -1,7 +1,7 @@
 --Motoren--
 3V an VCC, 5V an V+
-5V aus externer Quelle, nicht PI -> zu große Schwankungen durch Servomotor
-Schrittmotoren für Räder, Servomotoren für Zusatz
+5V aus externer Quelle, nicht PI -> zu groÃŸe Schwankungen durch Servomotor
+Schrittmotoren fÃ¼r RÃ¤der, Servomotoren fÃ¼r Zusatz
 
 --Gyro--
 Messung von Lage und Beschleunigung
@@ -13,7 +13,7 @@ zur Erstellung von 3d Raumkarte (Experimentell)
 kann an Schrittmotor angeschlossen werden -> zur Drehung
 
 --Lautsprecher--
-Benötigt für Soundwiedergabe
+BenÃ¶tigt fÃ¼r Soundwiedergabe
 
 --Controller--
-Input von Gerät zu Gerät verschieden
+Input von GerÃ¤t zu GerÃ¤t verschieden

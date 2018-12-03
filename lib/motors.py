@@ -36,7 +36,6 @@ class Motor(object):
         GPIO.output(self.P3, 0)
         GPIO.output(self.P4, 0)
 
-
     def move_to(self, angle):
         """Take the shortest route to a particular angle (degrees)."""
         # Make sure there is a 1:1 mapping between angle and stepper angle
@@ -45,14 +44,13 @@ class Motor(object):
         steps = (steps % self.steps_per_rev)
         if steps > self.steps_per_rev / 2:
             steps -= self.steps_per_rev
-            print ("moving " + repr(steps) + " steps")
+            print("moving " + repr(steps) + " steps")
             self._move_acw(-steps / 8)
         else:
             print("moving " + repr(steps) + " steps")
             self._move_cw(steps / 8)
         # self.step_angle = target_step_angle #in case you want to keep track of the position
         self.step_angle = 0
-
 
     def _move_acw(self, big_steps):
         self.clean_pins_up()
@@ -74,7 +72,6 @@ class Motor(object):
             GPIO.output(self.P4, 1)
             sleep(self._T)
         self.clean_pins_up()
-
 
     def _move_cw(self, big_steps):
         GPIO.output(self.P1, 0)
@@ -100,18 +97,19 @@ class Motor(object):
             sleep(self._T)
         self.clean_pins_up()
 
+
 if __name__ == "__main__":
     GPIO.cleanup()
     GPIO.setmode(GPIO.BCM)
     m_l = Motor([6, 13, 19, 26])
-    #m_r = Motor([10, 9, 11, 25])
+    # m_r = Motor([10, 9, 11, 25])
     m_l.rpm = float(sys.argv[1])
-    #m_r.rpm = float(sys.argv[1])
-    print ("Pause in seconds: " + repr(m_l._T))
+    # m_r.rpm = float(sys.argv[1])
+    print("Pause in seconds: " + repr(m_l._T))
     i = 1
     while i < 5:
         start_new_thread(m_l.move_to, (int(sys.argv[2]),))
-        #start_new_thread(m_r.move_to, (int(sys.argv[3]),))
+        # start_new_thread(m_r.move_to, (int(sys.argv[3]),))
         sleep(2)
         i = i + 1
     GPIO.cleanup()
