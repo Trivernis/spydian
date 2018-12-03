@@ -1,6 +1,7 @@
-import pygame, pygame.camera
 import picamera
 import picamera.array
+import pygame
+import pygame.camera
 from pygame import *
 
 
@@ -13,6 +14,7 @@ class Screen:
     """The Screen for the Terminal"""
 
     def __init__(self, size=(100, 100), title="Screen"):
+        self.fullscreen = True
         pygame.display.init()
         self.size = size
         self.screen = pygame.display.set_mode(self.size)
@@ -29,7 +31,6 @@ class Screen:
             displayinfo = pygame.display.Info()
             fullsize = (displayinfo.current_w, displayinfo.current_h)
             pygame.display.set_mode(fullsize, FULLSCREEN | DOUBLEBUF)
-            self.fullscreen = True
 
 
 class List(pygame.sprite.Sprite):

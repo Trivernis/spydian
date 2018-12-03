@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 import time
 
 
-class Navigator():
+class Navigator:
     """Forward Motor with relais, Steering with servo"""
 
     def __init__(self, mrelaispin):
@@ -66,7 +66,7 @@ class Ultrasonic:
         self.distance = 0
 
     def get_distance(self):
-        if (time.time()-self.time)>1:
+        if (time.time() - self.time) > 1:
             self.distance = self.sensor.echo()
             self.time = time.time()
         return self.distance

@@ -2,7 +2,7 @@ import os
 import pygame
 
 
-class Joystick():
+class Joystick:
     def __init__(self, navigator, light, configuration, camera):
         # joystick
         pygame.joystick.init()

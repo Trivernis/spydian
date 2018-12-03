@@ -129,10 +129,10 @@ if __name__ == '__main__':
     while True:
         try:
             start = time.time()
-            while (time.time() < start + 10):
+            while time.time() < start + 10:
                 forward(pins)
             start = time.time()
-            while (time.time() < start + 10):
+            while time.time() < start + 10:
                 backward(pins)
         except KeyboardInterrupt:
             break

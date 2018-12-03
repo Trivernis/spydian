@@ -5,10 +5,13 @@ GPIO.setmode(GPIO.BOARD)
 
 
 class Sensor(object):
-    def init(self, TRIG, ECHO):
+    def __init__(self):
         self.TRIGGER = TRIG
         self.ECHO = ECHO
         self.lastValues = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        self.lastValues = self.lastValues[1:]
+
+    def init(self, TRIG, ECHO):
         GPIO.setup(self.TRIGGER, GPIO.OUT)
         GPIO.setup(self.ECHO, GPIO.IN)
         GPIO.output(self.TRIGGER, False)
@@ -36,7 +39,6 @@ class Sensor(object):
         distance = pulse_duration * 17150
         distance = round(distance, 2)
         self.lastValues.append(distance)
-        self.lastValues = self.lastValues[1:]
         distance = round((sum(self.lastValues)) / (len(self.lastValues)), 2)
         # print(self.lastValues)
         # print("Distance: {}".format(distance))
