@@ -1,5 +1,6 @@
-import pygame
-import pygame.camera
+import pygame, pygame.camera
+import picamera
+import picamera.array
 from pygame import *
 
 
@@ -54,6 +55,7 @@ class List(pygame.sprite.Sprite):
     def update(self):
         if self.updated:
             height = 0
+            self.image.fill((0, 0, 0))
 
             for key in self.dict.keys():
                 line = '{}: {}'.format(key, self.dict[key])
@@ -69,14 +71,22 @@ class PiCamera(pygame.sprite.Sprite):
     def __init__(self, position, size):
         pygame.sprite.Sprite.__init__(self)
         pygame.camera.init()
-        cam_list = pygame.camera.list_cameras()
-        camera = pygame.camera.Camera(cam_list[0], size)
+        camera = picamera.PiCamera()
+        self.camsize = (size[0], int(size[0]/2))
+        camera.resolution = self.camsize
         self.camera = camera
+        self.output = picamera.array.PiRGBArray(camera, size=self.camsize)
         self.size = size
         self.image = pygame.Surface(self.size)
         self.image.fill((0, 0, 0))
         self.rect = self.image.get_rect()
         self.rect.topleft = position
 
-    def update(self):
-        self.camera.get_image(self.image)
+    def update(self, *args):
+        pass
+
+    def new_frame(self):
+        self.output.truncate(0)
+        self.camera.capture(self.output, 'rgb', resize=self.camsize)
+        s = pygame.transform.rotate(pygame.surfarray.make_surface(self.output.array), 270)
+        self.image.blit(s, (0, 0))

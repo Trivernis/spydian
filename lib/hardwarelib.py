@@ -1,6 +1,7 @@
 from subprocess import call, check_output
 from lib import ultrasonic
 import RPi.GPIO as GPIO
+import time
 
 
 class Navigator():
@@ -44,6 +45,7 @@ class Light:
         self.shine = False
 
     def switch(self):
+        print('light switch {}'.format(self.shine))
         GPIO.output(self.pin, not self.shine)
         self.shine = not self.shine
 
@@ -60,10 +62,14 @@ class Ultrasonic:
     def __init__(self, trigger, echo):
         self.sensor = ultrasonic.Sensor()
         self.sensor.init(trigger, echo)
+        self.time = 0
+        self.distance = 0
 
     def get_distance(self):
-        distance = self.sensor.echo()
-        return distance
+        if (time.time()-self.time)>1:
+            self.distance = self.sensor.echo()
+            self.time = time.time()
+        return self.distance
 
     def __del__(self):
         self.sensor.clean()
