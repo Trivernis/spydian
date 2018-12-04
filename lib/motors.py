@@ -17,7 +17,7 @@ class Motor(object):
             GPIO.setup(p, GPIO.OUT)
             GPIO.output(p, 0)
 
-    def __exit__(self, type, value, traceback):
+    def __exit__(self, type_of_motor, value, traceback):
         self.clean_pins_up()
 
     def _set_rpm(self, rpm):
@@ -54,7 +54,7 @@ class Motor(object):
 
     def _move_acw(self, big_steps):
         self.clean_pins_up()
-        for i in range(big_steps):
+        for _ in range(big_steps):
             GPIO.output(self.P1, 0)
             sleep(self._T)
             GPIO.output(self.P3, 1)
@@ -78,7 +78,7 @@ class Motor(object):
         GPIO.output(self.P2, 0)
         GPIO.output(self.P3, 0)
         GPIO.output(self.P4, 0)
-        for i in range(big_steps):
+        for _ in range(big_steps):
             GPIO.output(self.P3, 0)
             sleep(self._T)
             GPIO.output(self.P1, 1)

@@ -2,12 +2,11 @@ import picamera
 import picamera.array
 import pygame
 import pygame.camera
-from pygame import *
 
 
-def render_text_line(image, color, font, text, pos=(0, 0)):
-    render_text = font.render(text, 1, color)
-    image.blit(render_text, pos)
+def render_text_line(rimage, rcolor, rfont, text, pos=(0, 0)):
+    render_text = rfont.render(text, 1, rcolor)
+    rimage.blit(render_text, pos)
 
 
 class Screen:
@@ -20,7 +19,8 @@ class Screen:
         self.screen = pygame.display.set_mode(self.size)
         pygame.display.set_caption(title)
 
-    def refresh(self, rectangles=None):
+    @staticmethod
+    def refresh(rectangles=None):
         pygame.display.update(rectangles)
 
     def toggle_fullscreen(self):
@@ -30,7 +30,7 @@ class Screen:
         else:
             displayinfo = pygame.display.Info()
             fullsize = (displayinfo.current_w, displayinfo.current_h)
-            pygame.display.set_mode(fullsize, FULLSCREEN | DOUBLEBUF)
+            pygame.display.set_mode(fullsize, pygame.FULLSCREEN | pygame.DOUBLEBUF)
 
 
 class List(pygame.sprite.Sprite):
@@ -45,12 +45,12 @@ class List(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = position
         self.font = pygame.font.SysFont('Arial', 25)
-        self.dict = {}
+        self.display_dict = {}
         self.updated = True
         self.txtsize = self.font.size('__||__')
 
-    def set_dict(self, dict):
-        self.dict = dict
+    def set_dict(self, dispdict):
+        self.display_dict = dispdict
         self.updated = True
 
     def update(self):
@@ -58,8 +58,8 @@ class List(pygame.sprite.Sprite):
             height = 0
             self.image.fill((0, 0, 0))
 
-            for key in self.dict.keys():
-                line = '{}: {}'.format(key, self.dict[key])
+            for dictkey in self.display_dict.keys():
+                line = '{}: {}'.format(dictkey, self.display_dict[dictkey])
                 render_text_line(self.image, (255, 255, 255), self.font, line, (0, height))
                 height += self.txtsize[1]
 
