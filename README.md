@@ -1,4 +1,4 @@
-Spydian
+Spydian [![CodeFactor](https://www.codefactor.io/repository/github/trivernis/spydian/badge/master)](https://www.codefactor.io/repository/github/trivernis/spydian/overview/master)
 ===
 
 Summary
