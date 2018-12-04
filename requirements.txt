@@ -1,0 +1,4 @@
+Adafruit_DHT==1.4.0
+Adafruit_PCA9685==1.0.1
+picamera==1.13
+pygame==1.9.4
