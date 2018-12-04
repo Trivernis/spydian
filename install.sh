@@ -13,7 +13,7 @@ if hash pip3; then
     pip install pygame
     exit 0
 fi
-if [hash pip];then
+if hash pip;then
     pip install pygame
     exit 0
 fi
