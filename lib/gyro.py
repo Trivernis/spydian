@@ -26,8 +26,7 @@ def read_word_2c(reg):
     val = read_word(reg)
     if val >= 0x8000:
         return -((65535 - val) + 1)
-    else:
-        return val
+    return val
 
 
 def dist(a, b):
