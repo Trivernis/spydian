@@ -2,7 +2,6 @@ import picamera
 import picamera.array
 import pygame
 import pygame.camera
-from pygame import *
 
 
 def render_text_line(rimage, rcolor, rfont, text, pos=(0, 0)):
@@ -31,7 +30,7 @@ class Screen:
         else:
             displayinfo = pygame.display.Info()
             fullsize = (displayinfo.current_w, displayinfo.current_h)
-            pygame.display.set_mode(fullsize, FULLSCREEN | DOUBLEBUF)
+            pygame.display.set_mode(fullsize, pygame.FULLSCREEN | pygame.DOUBLEBUF)
 
 
 class List(pygame.sprite.Sprite):

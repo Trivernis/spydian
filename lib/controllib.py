@@ -21,20 +21,7 @@ class Joystick:
         self.pressed = []
         self.splaying = False
 
-    def handle(self):
-        c = self.configuration
-        nav = self.navigator
-        axis_dict = {}
-        # axes
-        for i in range(self.joystick.get_numaxes()):
-            axis = self.joystick.get_axis(i)
-            axis_dict['Axis {}'.format(i)] = axis
-
-            if i == c['GAS'] and axis > 0.1:
-                nav.forward()
-            elif i == c['GAS'] and axis < 0.1:
-                nav.stop()
-        # buttons
+    def _handle_buttons(self, axis_dict, c):
         for i in range(self.joystick.get_numbuttons()):
             button = self.joystick.get_button(i)
             axis_dict['Button {}'.format(i)] = button
@@ -73,7 +60,22 @@ class Joystick:
                 self.pressed.append(i)
             elif i == c['REC'] and button == 0 and i in self.pressed:
                 self.pressed.remove(i)
+        return axis_dict
 
+    def handle(self):
+        c = self.configuration
+        nav = self.navigator
+        axis_dict = {}
+        # axes
+        for i in range(self.joystick.get_numaxes()):
+            axis = self.joystick.get_axis(i)
+            axis_dict['Axis {}'.format(i)] = axis
+
+            if i == c['GAS'] and axis > 0.1:
+                nav.forward()
+            elif i == c['GAS'] and axis < 0.1:
+                nav.stop()
+        axis_dict = self._handle_buttons(axis_dict, c)
         # hats
         for i in range(self.joystick.get_numhats()):
             hat = self.joystick.get_hat(i)
