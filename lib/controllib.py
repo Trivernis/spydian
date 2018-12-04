@@ -21,45 +21,43 @@ class Joystick:
         self.pressed = []
         self.splaying = False
 
+    def _button_check(self, name, i, c, button):
+        """ Checks if a button was pressed and wasn't pressed before. """
+        if i == c[name]:
+            if button == 1 and i not in self.pressed:
+                self.pressed.append(i)
+                return 1
+            elif button == 0 and i in self.pressed:
+                self.pressed.remove(i)
+                return 2
+        return 0
+
     def _handle_buttons(self, axis_dict, c):
         for i in range(self.joystick.get_numbuttons()):
             button = self.joystick.get_button(i)
             axis_dict['Button {}'.format(i)] = button
 
-            if i == c['LIGHT'] and button == 1 and i not in self.pressed:
+            if self._button_check('LIGHT', i, c, button) == 1:
                 self.light.switch()
-                self.pressed.append(i)
-            elif i == c['LIGHT'] and button == 0 and i in self.pressed:
-                self.pressed.remove(i)
 
-            elif i == c['MUSIC'] and button == 1 and i not in self.pressed:
+            elif self._button_check('MUSIC', i, c, button) == 1:
                 if self.splaying:
                     self.sound.stop()
                     self.splaying = False
                 else:
                     self.sound.play()
                     self.splaying = True
-                self.pressed.append(i)
-            elif i == c['MUSIC'] and button == 0 and i in self.pressed:
-                self.pressed.remove(i)
 
-            elif i == c['VOLIN'] and button == 1 and i not in self.pressed:
+            elif self._button_check('VOLIN', i, c, button) == 1:
                 self.sound.set_volume(self.sound.get_volume() + 0.1)
-                self.pressed.append(i)
-            elif i == c['VOLIN'] and button == 0 and i in self.pressed:
+            elif self._button_check('VOLIN', i, c, button) == 2:
                 self.sound.set_volume(self.sound.get_volume() - 0.1)
-                self.pressed.remove(i)
 
-            elif i == c['VOLDE'] and button == 1 and i not in self.pressed:
-                self.pressed.append(i)
-            elif i == c['VOLDE'] and button == 0 and i in self.pressed:
-                self.pressed.remove(i)
+            elif self._button_check('VOLDE', i, c, button):
+                pass
 
-            elif i == c['REC'] and button == 1 and i not in self.pressed:
+            elif self._button_check('REC', i, c, button) == 1:
                 self._save_camimg()
-                self.pressed.append(i)
-            elif i == c['REC'] and button == 0 and i in self.pressed:
-                self.pressed.remove(i)
         return axis_dict
 
     def handle(self):
