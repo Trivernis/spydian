@@ -36,7 +36,7 @@ class Navigator:
 
 
 class Light:
-    """Light switched with a relais"""
+    """Light switched with a relays"""
 
     def __init__(self, lightpin):
         self.pin = lightpin
@@ -72,18 +72,23 @@ class Ultrasonic:
         return self.distance
 
     def __del__(self):
-        self.sensor.clean()
+        self.sensor.cleanup()
 
 
 class Temperature:
     """A temperature sensor"""
 
-    def get_Temperature(self):
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def get_temperature():
         outp = check_output(['python', '-u', './lib/thermolib.py']).decode('ISO-8859-1')
         temp, hum = outp.split('|')
         return temp
 
-    def get_Humidity(self):
+    @staticmethod
+    def get_humidity():
         outp = check_output(['python', '-u', './lib/thermolib.py']).decode('ISO-8859-1')
         temp, hum = outp.split('|')
         return hum

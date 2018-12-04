@@ -24,8 +24,8 @@ def main():
     # pygame stuff
     screen = graphiclib.Screen(size=(1000, 1000))
     all_sprites = pygame.sprite.RenderUpdates()
-    list = graphiclib.List((0, 0), (500, 1000))
-    all_sprites.add(list)
+    glist = graphiclib.List((0, 0), (500, 1000))
+    all_sprites.add(glist)
     all_sprites.add(camera)
     clock = pygame.time.Clock()
     running = True
@@ -38,9 +38,9 @@ def main():
                 print('quit event')
                 running = False
 
-        dict = jstick.handle()
-        dict['Distance'] = ultrasonic.get_distance()
-        list.set_dict(dict)
+        gdict = jstick.handle()
+        gdict['Distance'] = ultrasonic.get_distance()
+        glist.set_dict(gdict)
         all_sprites.update()
         update_rects = all_sprites.draw(screen.screen)
         screen.refresh(rectangles=update_rects)

@@ -24,11 +24,11 @@ class Joystick:
     def handle(self):
         c = self.configuration
         nav = self.navigator
-        dict = {}
+        axis_dict = {}
         # axes
         for i in range(self.joystick.get_numaxes()):
             axis = self.joystick.get_axis(i)
-            dict['Axis {}'.format(i)] = axis
+            axis_dict['Axis {}'.format(i)] = axis
 
             if i == c['GAS'] and axis > 0.1:
                 nav.forward()
@@ -37,7 +37,7 @@ class Joystick:
         # buttons
         for i in range(self.joystick.get_numbuttons()):
             button = self.joystick.get_button(i)
-            dict['Button {}'.format(i)] = button
+            axis_dict['Button {}'.format(i)] = button
 
             if i == c['LIGHT'] and button == 1 and i not in self.pressed:
                 self.light.switch()
@@ -77,7 +77,7 @@ class Joystick:
         # hats
         for i in range(self.joystick.get_numhats()):
             hat = self.joystick.get_hat(i)
-            dict['Hat {}'.format(i)] = hat
+            axis_dict['Hat {}'.format(i)] = hat
 
             if hat == (-1, 0):
                 nav.left()
@@ -86,8 +86,8 @@ class Joystick:
             else:
                 nav.straight()
 
-        dict['Volume'] = self.sound.get_volume()
-        return dict
+        axis_dict['Volume'] = self.sound.get_volume()
+        return axis_dict
 
     def _save_camimg(self):
         self.camera.new_frame()

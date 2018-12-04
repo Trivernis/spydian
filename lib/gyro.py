@@ -17,8 +17,8 @@ def read_byte(reg):
 
 def read_word(reg):
     h = bus.read_byte_data(address, reg)
-    l = bus.read_byte_data(address, reg + 1)
-    value = (h << 8) + l
+    r_data = bus.read_byte_data(address, reg + 1)
+    value = (h << 8) + r_data
     return value
 
 
@@ -44,7 +44,7 @@ def get_x_rotation(x, y, z):
     return math.degrees(radians)
 
 
-def getAllOut():
+def get_all_gyro_data():
     acceleration_xout = read_word_2c(0x3b)
     acceleration_yout = read_word_2c(0x3d)
     acceleration_zout = read_word_2c(0x3f)
